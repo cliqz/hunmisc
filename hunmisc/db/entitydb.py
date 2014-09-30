@@ -172,7 +172,8 @@ class EntityDB(object):
     @staticmethod
     def create_from_list(file_name):
         db = EntityDB()
-        entity_list = (line.strip().split('\t') for line in file(file_name))
+        entity_list = (line.strip().split('\t') for line in file(file_name)
+            if line[0] != '#' and line.strip())
         for entity, e_type in entity_list:
             db.add_entity(entity, None, e_type)
         return db
